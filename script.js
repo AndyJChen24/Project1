@@ -1,6 +1,6 @@
-
+var responseArray;
 $(document).ready(function () {
-    var responseArray;
+    
     // check if genre buttons are clicked
     $(".buttonGenre").click(function(){
         var d = $(this).data("value")
@@ -40,20 +40,21 @@ $(document).ready(function () {
         responseArray = response;
     });
 
-function genre(queryURL){
-    $.ajax({
-        url:queryURL,
-        method:"GET"
-    }).then(function(response){
-        $("#recommendations").html("");
-        $.each(response.anime,function(index,value){
-            $("#recommendations").append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
-            
+
+});
+
+    function genre(queryURL){
+        $.ajax({
+            url:queryURL,
+            method:"GET"
+        }).then(function(response){
+            $("#recommendations").html("");
+            $.each(response.anime,function(index,value){
+                $("#recommendations").append(`<div onclick="ID(${response.anime[index].mal_id},'${response.anime[index].title}')" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`);
+                console.log(response.anime[index].title);
+            })
         })
-
-
-    })
-};
+    };
 
     // ajax call with anime id
     function ID(animeID, mangaTitle) {
@@ -69,7 +70,7 @@ function genre(queryURL){
             $("#searchResults").append(`<div class='animeName' value='${response.title}'> ${response.title}</div>`)
             $("#searchResults").append(`<a href= '${response.url}' class ='cards' style='float:left, box-sizing:border-box'><div class='card_image'> <img src='${response.image_url}'></div> </a>`);
             $("#searchResults").append(response.synopsis)
-            // append recommendation 
+            
         })
         // Ajax call for recommendations 
         var queryIDURL = "https://api.jikan.moe/v3/anime/" + animeID + "/recommendations"
@@ -78,11 +79,11 @@ function genre(queryURL){
             method: "GET"
         }).then(function(response){    
             $.each(response.recommendations,function(index,value){
-            $("#recommendations").append(`<div class='animeName' onclick="ID(${response.recommendations[index].mal_id})" value=${response.recommendations[index].mal_id}'> ${response.recommendations[index].title}</div>`)
+            $("#recommendations").append(`<div class='animeName' onclick="ID(${response.recommendations[index].mal_id},'${response.recommendations[index].title}')" value=${response.recommendations[index].mal_id}'> ${response.recommendations[index].title}</div>`)
             })
         });
 
-        console.log(mangaTitle);
+        console.log("title is "+mangaTitle);
 
         //getting manga with matching title
         var matchedElementsArray = responseArray.manga.filter(function (item) {
@@ -123,6 +124,8 @@ function genre(queryURL){
             $("#noManga").append(noMangaText);
         };
     };
+
+
     function search(queryURL) {
         $.ajax({
             url: queryURL,
@@ -143,19 +146,3 @@ function genre(queryURL){
 
     }
 
-
-
-
-    function genre(queryURL) {
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response)
-
-            $.each(response.anime, function (index, value) {
-                $("#recommendations").append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
-            })
-        })
-    };
-});
