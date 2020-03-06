@@ -1,6 +1,6 @@
 $(document).ready(function(){
     // check if genre buttons are clicked
-    $(".button").click(function(){
+    $(".buttonGenre").click(function(){
         var d = $(this).data("value")
         console.log(d)
         var genreURL ="https://api.jikan.moe/v3/genre/anime/"+d+"/1"
