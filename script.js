@@ -106,9 +106,10 @@ $(document).ready(function () {
                     "x-rapidapi-key": "006e809b87msh0c1cbdaccb16659p12b8d5jsn35e1032a8f6a"
                 }
             }
-            $("#noManga").empty();
+            
             $.ajax(settings).then(function (response) {
                 console.log(response);
+                $("#noManga").empty();
                 if (response.url) {
                     mangaLink = $("<a>").attr("href", response.url);
                     mangaLink.text("Click to see manga!");
@@ -119,6 +120,7 @@ $(document).ready(function () {
                 }
             });
         } else {
+            $("#noManga").empty();
             var noMangaText = $("<p>").text("There's no Manga for this Anime!");
             console.log(noMangaText);
             $("#noManga").append(noMangaText);
