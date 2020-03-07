@@ -1,4 +1,4 @@
-# Weather Dashboard
+# Otaku Zone
 With this project we were placed into teams of three and asked to use our newly acquired skills and knowledge to build a web application from scratch. Working collaboratively, we learned agile development methodologies and implemented feature and bug fixes using the git branch workflow and pull requests.  Integrating data received from multiple server-side API requests we created a page that solved a problem.
 
 ## Challenges
