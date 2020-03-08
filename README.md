@@ -12,5 +12,5 @@ Then I git a list of recommendations and know if there is a manga to go with the
 ## Deployed Project
 
 [Otaku Zone](https://tristinbarnett.github.io/Project1/)
-
+[Presentation](https://drive.google.com/open?id=1_51CLrOY-XLlRCZmXg87uUmu5SylTzNR)
 ![alt text](otakuZone.png "Otaku Zone")
